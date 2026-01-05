@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankSampah - Design Direction Explorations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 16px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .header h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            color: #4b5563;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .guide {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .guide h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #16a34a;
+            margin-bottom: 16px;
+        }
+        
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        .guide-item {
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .guide-item strong {
+            display: block;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .guide-item span {
+            color: #4b5563;
+            font-size: 14px;
+        }
+        
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .mockup-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .mockup-card:hover {
+            box-shadow: 0 10px 15px rgba(22, 163, 74, 0.2);
+            transform: translateY(-4px);
+        }
+        
+        .mockup-header {
+            margin-bottom: 16px;
+        }
+        
+        .mockup-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .mockup-subtitle {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        
+        .mockup-visual {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phone-frame {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .phone-notch {
+            height: 32px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .notch {
+            width: 120px;
+            height: 24px;
+            background: #1f2937;
+            border-radius: 0 0 16px 16px;
+        }
+        
+        .phone-screen {
+            background: white;
+            min-height: 600px;
+            padding: 16px;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 24px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .balance-display {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .impact-text {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .transaction-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .nav-item {
+            text-align: center;
+            font-size: 11px;
+            color: #6b7280;
+        }
+        
+        .nav-item.active {
+            color: #16a34a;
+            font-weight: 600;
+        }
+        
+        .characteristics {
+            margin-bottom: 16px;
+        }
+        
+        .characteristics h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .characteristics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .characteristics li {
+            padding: 6px 0;
+            color: #4b5563;
+            font-size: 14px;
+            display: flex;
+            align-items: start;
+        }
+        
+        .characteristics li:before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .best-for {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        
+        .best-for strong {
+            display: block;
+            color: #15803d;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .best-for span {
+            color: #14532d;
+            font-size: 13px;
+        }
+        
+        .considerations {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 4px;
+        }
+        
+        .considerations strong {
+            display: block;
+            color: #d97706;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .considerations span {
+            color: #b45309;
+            font-size: 13px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .badge-green {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        
+        .badge-blue {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .badge-gold {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        /* Direction-specific colors */
+        .green-primary { background: #16a34a; color: white; }
+        .blue-primary { background: #3b82f6; color: white; }
+        .gold-accent { background: #f59e0b; color: white; }
+        .gradient-green { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; }
+        .gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; }
+        
+        .comparison-note {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .comparison-note h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 16px;
+        }
+        
+        .comparison-note p {
+            color: #4b5563;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 BankSampah Design Directions</h1>
+            <p>Explore 6 different visual approaches for our waste bank platform. Each direction brings unique strengths for different user needs and contexts.</p>
+        </div>
+        
+        <div class="guide">
+            <h2>📋 Evaluation Criteria</h2>
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <strong>Layout Intuitiveness</strong>
+                    <span>Does the hierarchy match your priorities?</span>
+                </div>
+                <div class="guide-item">
+                    <strong>Interaction Style</strong>
+                    <span>Does it fit your core experience?</span>
+                </div>
+                <div class="guide-item">
+                    <strong>Visual Weight</strong>
+                    <span>Does the density feel right?</span>
+                </div>
+                <div class="guide-item">
+                    <strong>Navigation Approach</strong>
+                    <span>Does it match user expectations?</span>
+                </div>
+                <div class="guide-item">
+                    <strong>Component Usage</strong>
+                    <span>Do components support journeys?</span>
+                </div>
+                <div class="guide-item">
+                    <strong>Brand Alignment</strong>
+                    <span>Does it support emotional goals?</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mockup-grid">
+            <!-- Direction 1: Impact-First Hero -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-green">Impact-First</div>
+                    <h2 class="mockup-title">Direction 1: Impact-First Hero</h2>
+                    <p class="mockup-subtitle">Lead with environmental transformation, dual ledger secondary</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen">
+                            <div class="status-bar">
+                                <span>9:41</span>
+                                <span>⚡ 5 hari streak</span>
+                            </div>
+                            
+                            <div class="hero-section gradient-green">
+                                <div style="font-size: 48px; margin-bottom: 8px;">🌳</div>
+                                <div class="balance-display">50 Pohon Diselamatkan</div>
+                                <div class="impact-text">= 100kg sampah dikelola</div>
+                                <div class="impact-text">= Rp 150,000 tersimpan</div>
+                            </div>
+                            
+                            <h3 style="font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #4b5563;">Transaksi Terakhir</h3>
+                            
+                            <div class="transaction-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span style="font-size: 14px; font-weight: 600;">Plastik Campur</span>
+                                    <span style="font-size: 14px; font-weight: 700; color: #16a34a;">+5 pohon</span>
+                                </div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    10kg • Rp 15,000
+                                </div>
+                            </div>
+                            
+                            <div class="transaction-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span style="font-size: 14px; font-weight: 600;">Kertas</span>
+                                    <span style="font-size: 14px; font-weight: 700; color: #16a34a;">+3 pohon</span>
+                                </div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    6kg • Rp 9,000
+                                </div>
+                            </div>
+                            
+                            <div class="bottom-nav">
+                                <div class="nav-item active">
+                                    <div style="font-size: 20px;">🏠</div>
+                                    <div>Dashboard</div>
+                                </div>
+                                <div class="nav-item">
+                                    <div style="font-size: 20px;">📊</div>
+                                    <div>Transaksi</div>
+                                </div>
+                                <div class="nav-item">
+                                    <div style="font-size: 20px;">👥</div>
+                                    <div>Community</div>
+                                </div>
+                                <div class="nav-item">
+                                    <div style="font-size: 20px;">👤</div>
+                                    <div>Profile</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>Environmental narrative leads all interactions</li>
+                        <li>Dual ledger inverted: kg → Rp (not Rp → kg)</li>
+                        <li>Large emotional visual (tree icon)</li>
+                        <li>Streak gamification in status bar</li>
+                        <li>Transaction list shows impact first</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>Ibu Siti (warm lead), mission-driven users, identity transformation emphasis</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>Cold leads may want financial info first, operators need quick Rp scan</span>
+                </div>
+            </div>
+            
+            <!-- Direction 2: Dual Ledger Balance -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-blue">Balanced Dual</div>
+                    <h2 class="mockup-title">Direction 2: Dual Ledger Balance</h2>
+                    <p class="mockup-subtitle">Equal visual weight to financial & environmental value</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen">
+                            <div class="status-bar">
+                                <span>9:41</span>
+                                <span>🔥 5 hari</span>
+                            </div>
+                            
+                            <div class="hero-section" style="background: white; border: 2px solid #e5e7eb;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                                    <div>
+                                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Saldo Rupiah</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: #16a34a;">Rp 150K</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Saldo Sampah</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: #3b82f6;">100kg</div>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: #f0fdf4; border-radius: 8px;">
+                                    <div style="font-size: 14px; color: #15803d;">
+                                        💚 <strong>50 pohon diselamatkan</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                                <button style="flex: 1; padding: 12px; background: #16a34a; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                                    Setor Sampah
+                                </button>
+                                <button style="flex: 1; padding: 12px; background: white; color: #16a34a; border: 2px solid #16a34a; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                                    Tarik Saldo
+                                </button>
+                            </div>
+                            
+                            <h3 style="font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #4b5563;">Riwayat</h3>
+                            
+                            <div class="transaction-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">Plastik Campur</div>
+                                        <div style="font-size: 12px; color: #6b7280;">24 Des 2025 • 10:30</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 16px; font-weight: 700; color: #16a34a;">+Rp 15K</div>
+                                        <div style="font-size: 12px; color: #3b82f6;">+10kg</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bottom-nav">
+                                <div class="nav-item active">🏠<br>Dashboard</div>
+                                <div class="nav-item">📊<br>Transaksi</div>
+                                <div class="nav-item">👥<br>Community</div>
+                                <div class="nav-item">👤<br>Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>True dual ledger: side-by-side equal prominence</li>
+                        <li>Financial left, environmental right (reading order)</li>
+                        <li>Impact narrative as supporting context</li>
+                        <li>Dual CTA buttons (deposit/withdraw)</li>
+                        <li>Transaction cards show both values equally</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>Rina (cold lead), financial-conscious users, quick scanning for both values</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>Less emotional punch, may feel transactional over transformational</span>
+                </div>
+            </div>
+            
+            <!-- Direction 3: Gamification-Led -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-gold">Gamification-Led</div>
+                    <h2 class="mockup-title">Direction 3: Gamification-Led</h2>
+                    <p class="mockup-subtitle">Mature gamification drives engagement, progress visible</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen">
+                            <div class="status-bar">
+                                <span>9:41</span>
+                                <span style="color: #f59e0b; font-weight: 600;">⭐ Level 5 Champion</span>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 2px solid #f59e0b;">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px;">
+                                        🏆
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 2px;">Anda adalah</div>
+                                        <div style="font-size: 20px; font-weight: 700; color: #1f2937;">Environmental Champion</div>
+                                        <div style="font-size: 12px; color: #f59e0b;">🔥 Streak 5 hari • Top 10%</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; font-size: 11px; color: #6b7280; margin-bottom: 4px;">
+                                        <span>Menuju Level 6</span>
+                                        <span>125kg / 150kg</span>
+                                    </div>
+                                    <div style="height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 83%; height: 100%; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="hero-section" style="background: #f0fdf4; border: 2px solid #16a34a;">
+                                <div style="display: flex; justify-content: space-around; margin-bottom: 8px;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 24px; font-weight: 700; color: #16a34a;">Rp 150K</div>
+                                        <div style="font-size: 11px; color: #15803d;">Saldo Rupiah</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">100kg</div>
+                                        <div style="font-size: 11px; color: #2563eb;">Saldo Sampah</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 13px; color: #15803d; font-weight: 500;">
+                                    🌳 50 pohon diselamatkan
+                                </div>
+                            </div>
+                            
+                            <h3 style="font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #4b5563;">Badge Terakhir</h3>
+                            
+                            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                                <div style="flex: 1; background: white; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 32px; margin-bottom: 4px;">🌟</div>
+                                    <div style="font-size: 11px; color: #4b5563;">First 100kg</div>
+                                </div>
+                                <div style="flex: 1; background: white; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 32px; margin-bottom: 4px;">🔥</div>
+                                    <div style="font-size: 11px; color: #4b5563;">5 Day Streak</div>
+                                </div>
+                                <div style="flex: 1; background: white; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 32px; margin-bottom: 4px;">🤝</div>
+                                    <div style="font-size: 11px; color: #4b5563;">Inviter</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bottom-nav">
+                                <div class="nav-item active">🏠<br>Dashboard</div>
+                                <div class="nav-item">📊<br>Transaksi</div>
+                                <div class="nav-item">🏆<br>Badges</div>
+                                <div class="nav-item">👤<br>Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>Level & badge system primary focus</li>
+                        <li>Progress bar toward next level prominent</li>
+                        <li>Streak mechanic visible in status bar</li>
+                        <li>Badge showcase below ledger</li>
+                        <li>Gold accent color for achievements</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>Engaged users, driving 80% retention via gamification, social sharers</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>May overwhelm cold leads, ensure gamification stays mature not childish</span>
+                </div>
+            </div>
+            
+            <!-- Direction 4: Lansia-Optimized -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-blue">Lansia-Optimized</div>
+                    <h2 class="mockup-title">Direction 4: Mode Lansia</h2>
+                    <p class="mockup-subtitle">Maximum contrast, huge text, simplified 3-action UI</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen" style="background: white;">
+                            <div style="padding: 32px 24px; text-align: center;">
+                                <div style="font-size: 20px; font-weight: 700; color: #000; margin-bottom: 32px;">
+                                    BANK SAMPAH
+                                </div>
+                                
+                                <div style="background: white; border: 4px solid #000; border-radius: 16px; padding: 32px; margin-bottom: 32px;">
+                                    <div style="font-size: 24px; font-weight: 700; color: #000; margin-bottom: 16px;">
+                                        SALDO ANDA
+                                    </div>
+                                    <div style="font-size: 56px; font-weight: 700; color: #16a34a; margin-bottom: 8px;">
+                                        Rp 150K
+                                    </div>
+                                    <div style="font-size: 48px; font-weight: 700; color: #3b82f6; margin-bottom: 16px;">
+                                        100 kg
+                                    </div>
+                                    <div style="font-size: 24px; font-weight: 600; color: #000;">
+                                        = 50 pohon
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 24px;">
+                                    <button style="width: 100%; padding: 32px; background: #16a34a; color: white; border: none; border-radius: 16px; font-size: 32px; font-weight: 700; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                                        SETOR SAMPAH
+                                    </button>
+                                    
+                                    <button style="width: 100%; padding: 32px; background: white; color: #000; border: 4px solid #000; border-radius: 16px; font-size: 32px; font-weight: 700;">
+                                        RIWAYAT
+                                    </button>
+                                    
+                                    <button style="width: 100%; padding: 32px; background: white; color: #000; border: 4px solid #000; border-radius: 16px; font-size: 32px; font-weight: 700;">
+                                        PROFIL SAYA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>All text minimum 24pt (body text)</li>
+                        <li>Display text 48pt-64pt for critical info</li>
+                        <li>Pure black text on white background</li>
+                        <li>3 giant action buttons only (88x88pt touch)</li>
+                        <li>No bottom nav - simplified navigation</li>
+                        <li>Doubled spacing (16px base grid)</li>
+                        <li>Maximum contrast ratios (21:1 black/white)</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>Bapak Joko (60+), users with visual impairments, accessibility compliance</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>Needs mode toggle in settings, reduced feature density acceptable</span>
+                </div>
+            </div>
+            
+            <!-- Direction 5: Community-First -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-green">Community-First</div>
+                    <h2 class="mockup-title">Direction 5: Community Solidarity</h2>
+                    <p class="mockup-subtitle">Collective achievement emphasis, social sharing priority</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen">
+                            <div class="status-bar">
+                                <span>9:41</span>
+                                <span>👥 Kelurahan Jaya</span>
+                            </div>
+                            
+                            <div style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); border-radius: 12px; padding: 20px; margin-bottom: 16px; color: white; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">
+                                    🎉 Kelurahan kita TOP 3 se-kota!
+                                </div>
+                                <div style="font-size: 40px; font-weight: 700; margin-bottom: 8px;">
+                                    10 TON
+                                </div>
+                                <div style="font-size: 14px; opacity: 0.9;">
+                                    Bersama-sama mengelola sampah bulan ini
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Kontribusi Anda</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <div>
+                                        <div style="font-size: 28px; font-weight: 700; color: #16a34a;">Rp 150K</div>
+                                        <div style="font-size: 20px; font-weight: 600; color: #3b82f6;">100kg</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 14px; color: #4b5563; margin-bottom: 4px;">Anda di</div>
+                                        <div style="font-size: 24px; font-weight: 700; color: #f59e0b;">TOP 10%</div>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; font-size: 13px; color: #15803d;">
+                                    💚 <strong>50 pohon</strong> diselamatkan bersama
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <h3 style="font-size: 14px; font-weight: 600; color: #1f2937;">Top Contributors</h3>
+                                    <span style="font-size: 12px; color: #6b7280;">Bulan ini</span>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 8px; background: #f9fafb; border-radius: 8px; margin-bottom: 8px;">
+                                    <div style="width: 40px; height: 40px; background: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                                        IB
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 14px; font-weight: 600;">Ibu Budi</div>
+                                        <div style="font-size: 12px; color: #6b7280;">250kg bulan ini</div>
+                                    </div>
+                                    <div style="font-size: 20px;">🥇</div>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 8px; background: #f9fafb; border-radius: 8px; margin-bottom: 8px;">
+                                    <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                                        PA
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 14px; font-weight: 600;">Pak Ahmad</div>
+                                        <div style="font-size: 12px; color: #6b7280;">200kg bulan ini</div>
+                                    </div>
+                                    <div style="font-size: 20px;">🥈</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bottom-nav">
+                                <div class="nav-item">🏠<br>Dashboard</div>
+                                <div class="nav-item">📊<br>Transaksi</div>
+                                <div class="nav-item active">👥<br>Community</div>
+                                <div class="nav-item">👤<br>Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>Collective achievement hero (kelurahan milestone)</li>
+                        <li>Individual contribution framed as part of whole</li>
+                        <li>Percentile ranking (not absolute position)</li>
+                        <li>Community leaderboard prominent</li>
+                        <li>Social sharing integrated into every success</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>Community-oriented users, social sharers, driving viral growth, solidarity framing</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>Individual ledger less prominent, needs community context data</span>
+                </div>
+            </div>
+            
+            <!-- Direction 6: Progressive Complexity -->
+            <div class="mockup-card">
+                <div class="mockup-header">
+                    <div class="badge badge-blue">Progressive</div>
+                    <h2 class="mockup-title">Direction 6: Progressive Complexity</h2>
+                    <p class="mockup-subtitle">Adaptive UI: Simple → Detailed → Power based on usage</p>
+                </div>
+                
+                <div class="mockup-visual">
+                    <div class="phone-frame">
+                        <div class="phone-notch">
+                            <div class="notch"></div>
+                        </div>
+                        <div class="phone-screen">
+                            <div style="background: #3b82f6; color: white; padding: 8px 16px; font-size: 11px; text-align: center; font-weight: 600;">
+                                MODE: Simple ✨ | <span style="opacity: 0.7;">Tap untuk upgrade ke Detailed</span>
+                            </div>
+                            
+                            <div class="status-bar">
+                                <span>9:41</span>
+                                <span>🔥 5 hari</span>
+                            </div>
+                            
+                            <div class="hero-section gradient-green">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Total Saldo</div>
+                                <div class="balance-display">Rp 150,000</div>
+                                <div class="balance-display" style="font-size: 28px; margin-top: 8px;">100kg sampah</div>
+                                <div class="impact-text" style="margin-top: 12px;">= 50 pohon diselamatkan 🌳</div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px; margin: 16px 0;">
+                                <button style="flex: 1; padding: 16px; background: white; color: #16a34a; border: 2px solid #16a34a; border-radius: 12px; font-weight: 700; font-size: 16px;">
+                                    📸 Setor
+                                </button>
+                                <button style="flex: 1; padding: 16px; background: white; color: #3b82f6; border: 2px solid #3b82f6; border-radius: 12px; font-weight: 700; font-size: 16px;">
+                                    💰 Tarik
+                                </button>
+                            </div>
+                            
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px; margin-bottom: 16px;">
+                                <div style="font-size: 13px; font-weight: 600; color: #d97706; margin-bottom: 4px;">
+                                    💡 Tip: Unlock Mode Detailed
+                                </div>
+                                <div style="font-size: 12px; color: #b45309;">
+                                    Setor 3x lagi untuk lihat breakdown per jenis sampah
+                                </div>
+                            </div>
+                            
+                            <h3 style="font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #4b5563;">Transaksi Terakhir (3)</h3>
+                            
+                            <div class="transaction-card">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <div style="font-size: 14px; font-weight: 600;">Setor Sampah</div>
+                                        <div style="font-size: 12px; color: #6b7280;">24 Des • 10:30</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 16px; font-weight: 700; color: #16a34a;">+Rp 15K</div>
+                                        <div style="font-size: 12px; color: #3b82f6;">+10kg</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bottom-nav">
+                                <div class="nav-item active">🏠<br>Dashboard</div>
+                                <div class="nav-item">📊<br>Transaksi</div>
+                                <div class="nav-item">👤<br>Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="characteristics">
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li>Mode indicator visible at top (Simple/Detailed/Power)</li>
+                        <li>Progressive unlock hints (3 more transactions)</li>
+                        <li>UI adapts based on usage: fewer tabs initially</li>
+                        <li>Information density increases with expertise</li>
+                        <li>Gamification unlocks with engagement</li>
+                    </ul>
+                </div>
+                
+                <div class="best-for">
+                    <strong>✅ Best For:</strong>
+                    <span>All user types over time, reduces initial overwhelm, grows with user</span>
+                </div>
+                
+                <div class="considerations">
+                    <strong>⚠️ Consider:</strong>
+                    <span>Complex to implement, needs clear mode transition UX, state management</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-note">
+            <h2>🎯 Making Your Choice</h2>
+            <p><strong>Which direction feels most aligned with BankSampah's identity transformation mission?</strong></p>
+            <p>You can choose one direction as-is, or combine elements from multiple directions.</p>
+            <p style="margin-top: 16px; color: #16a34a; font-weight: 600;">
+                Take your time exploring. This decision shapes your entire product experience.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
