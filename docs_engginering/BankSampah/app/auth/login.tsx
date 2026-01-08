@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ActivityIndicator, TextInput, Modal, Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useAuthStore } from '../../stores/authStore';
 import { supabase } from '../../lib/supabase';
+import { getPostLoginRedirect } from '../../lib/auth-guard';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen() {
+  const router = useRouter();
   const [modeLansia] = useState(false); // Integrasi dengan store/uiStore jika sudah ada
   const { signIn, isLoading, error, setError } = useAuthStore();
   const [phone, setPhone] = useState('');
@@ -81,7 +84,10 @@ export default function LoginScreen() {
       if (supaError) setError(supaError.message);
       else {
         setOtpModal(false);
-        Alert.alert('Login berhasil', 'Anda berhasil login.');
+        
+        // Redirect based on onboarding status
+        const redirectPath = getPostLoginRedirect();
+        router.replace(redirectPath as any);
       }
     } catch (e: any) {
       setError(e.message || 'Verifikasi OTP gagal');

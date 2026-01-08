@@ -3,6 +3,7 @@ import { View, ActivityIndicator, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../stores/authStore';
+import { getPostLoginRedirect } from '../../lib/auth-guard';
 import * as Linking from 'expo-linking';
 
 export default function AuthCallback() {
@@ -30,7 +31,11 @@ export default function AuthCallback() {
             setSession(data.session as any);
             setUser(data.user as any);
             console.log('Session set:', data.session);
-            router.replace('/auth');
+            
+            // Redirect based on onboarding status
+            const redirectPath = getPostLoginRedirect();
+            console.log('Redirecting to:', redirectPath);
+            router.replace(redirectPath as any);
           }
         }
       }
