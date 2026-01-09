@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ActivityIndicator, TextInput, Modal, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuthStore } from '../../stores/authStore';
@@ -19,6 +19,58 @@ export default function LoginScreen() {
   const [otp, setOtp] = useState('');
   const [otpModal, setOtpModal] = useState(false);
 
+  // Listen for deep link after OAuth
+  useEffect(() => {
+    const subscription = Linking.addEventListener('url', async (event) => {
+      // If we get a callback URL, extract tokens and set session directly
+      if (event.url.includes('auth/callback')) {
+        console.log('=== LoginScreen: URL contains auth/callback, extracting tokens ===');
+        
+        const hash = event.url.split('#')[1];
+        console.log('=== LoginScreen: Hash extracted:', hash);
+        
+        if (hash) {
+          const params = new URLSearchParams(hash);
+          const access_token = params.get('access_token');
+          const refresh_token = params.get('refresh_token');
+          
+          console.log('=== LoginScreen: Tokens extracted, access_token exists:', !!access_token, 'refresh_token exists:', !!refresh_token);
+          
+          if (access_token && refresh_token) {
+            console.log('=== LoginScreen: Setting session with Supabase ===');
+            
+            const { data, error } = await supabase.auth.setSession({
+              access_token,
+              refresh_token,
+            });
+            
+            if (error) {
+              console.log('=== LoginScreen: Set session error:', error);
+              setError(error.message);
+            } else {
+              console.log('=== LoginScreen: Session set successfully:', data);
+              const { setSession: storeSetSession, setUser: storeSetUser } = useAuthStore.getState();
+              storeSetSession(data.session as any);
+              storeSetUser(data.user as any);
+              
+              console.log('=== LoginScreen: Calling getPostLoginRedirect ===');
+              const redirectPath = getPostLoginRedirect();
+              console.log('=== LoginScreen: Redirecting to:', redirectPath);
+              router.replace(redirectPath as any);
+            }
+          }
+        }
+      } else {
+        console.log('=== LoginScreen: URL does not contain auth/callback ===');
+      }
+    });
+
+    return () => {
+      console.log('=== LoginScreen: Cleaning up deep link listener ===');
+      subscription.remove();
+    };
+  }, [router]);
+
   const handleGoogleLogin = async () => {
     setError(null)
 
@@ -34,9 +86,6 @@ export default function LoginScreen() {
           },
         })
 
-      console.log('SETELAH LOGIN WITH GOOGLE')
-      console.log('supaError:', supaError)
-      console.log('oauth url:', data?.url)
 
       if (supaError) {
         setError(supaError.message)
@@ -44,7 +93,7 @@ export default function LoginScreen() {
       }
 
       if (data?.url) {
-        await WebBrowser.openAuthSessionAsync(
+        const result = await WebBrowser.openAuthSessionAsync(
           data.url,
           redirectTo
         )

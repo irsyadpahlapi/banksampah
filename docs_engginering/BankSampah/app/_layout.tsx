@@ -12,7 +12,7 @@ export default function RootLayout() {
   return (
     <NativeBaseProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack initialRouteName="dashboard/index" />
+        <Stack screenOptions={{ headerShown: false }} />
         <StatusBar style="auto" />
       </ThemeProvider>
     </NativeBaseProvider>

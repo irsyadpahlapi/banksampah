@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Logout from '../app/auth/logout';
+import Logout from '../app/dashboard/logout';
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ replace: jest.fn() }),

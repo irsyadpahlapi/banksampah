@@ -1,14 +1,16 @@
 ﻿import { useAuthStore } from '../stores/authStore';
+import { useOnboardingStore } from '../stores/onboardingStore';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
 
 /**
  * Hook to check if user needs to complete onboarding
- * Redirects to location selection if onboarding not complete
+ * Redirects to tutorial or location selection based on progress
  */
 export function useRequireOnboarding() {
   const router = useRouter();
   const { user, isOnboardingComplete } = useAuthStore();
+  const { isTutorialComplete } = useOnboardingStore();
 
   useEffect(() => {
     // Check if user is logged in
@@ -17,13 +19,19 @@ export function useRequireOnboarding() {
       return;
     }
 
-    // Check if onboarding is complete
+    // Check tutorial completion first
+    if (!isTutorialComplete) {
+      router.replace('/onboarding/tutorial-1');
+      return;
+    }
+
+    // Then check if onboarding (location selection) is complete
     if (!isOnboardingComplete) {
       router.replace('/onboarding/location-selection');
     }
-  }, [user, isOnboardingComplete]);
+  }, [user, isTutorialComplete, isOnboardingComplete]);
 
-  return { user, isOnboardingComplete };
+  return { user, isTutorialComplete, isOnboardingComplete };
 }
 
 /**
@@ -41,6 +49,20 @@ export function checkOnboardingComplete(): boolean {
  * @returns string - path to redirect to
  */
 export function getPostLoginRedirect(): string {
+  const { isTutorialComplete } = useOnboardingStore.getState();
+  
+  console.log('=== getPostLoginRedirect DEBUG ===');
+  console.log('isTutorialComplete:', isTutorialComplete);
+  
+  // First-time users: show tutorial
+  if (!isTutorialComplete) {
+    console.log('Redirecting to: /onboarding/tutorial-1');
+    return '/onboarding/tutorial-1';
+  }
+  
+  // Tutorial done but location not selected
   const isComplete = checkOnboardingComplete();
-  return isComplete ? '/' : '/onboarding/location-selection';
+  console.log('checkOnboardingComplete:', isComplete);
+  console.log('Redirecting to:', isComplete ? '/dashboard' : '/onboarding/location-selection');
+  return isComplete ? '/dashboard' : '/onboarding/location-selection';
 }

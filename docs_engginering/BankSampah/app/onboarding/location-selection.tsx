@@ -141,8 +141,8 @@ export default function LocationSelectionScreen() {
       
       Alert.alert('Berhasil', 'Lokasi berhasil disimpan!');
 
-      // Navigate to home screen (tabs)
-      router.replace('/');
+      // Navigate to dashboard
+      router.replace('/dashboard');
     } catch (error) {
       Alert.alert(
         'Error',

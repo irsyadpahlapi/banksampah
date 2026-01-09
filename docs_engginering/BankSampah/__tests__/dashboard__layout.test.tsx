@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import TabLayout from '../app/auth/_layout';
+import TabLayout from '../app/dashboard/_layout';
 
 jest.mock('expo-router', () => {
   const React = require('react');

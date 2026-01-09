@@ -22,11 +22,13 @@ interface OnboardingState {
   // State
   selectedKelurahan: Kelurahan | null;
   selectedUnit: BankSampahUnit | null;
+  isTutorialComplete: boolean;
   isOnboardingComplete: boolean;
   
   // Actions
   setKelurahan: (kelurahan: Kelurahan | null) => void;
   setUnit: (unit: BankSampahUnit | null) => void;
+  completeTutorial: () => void;
   completeOnboarding: () => void;
   resetOnboarding: () => void;
 }
@@ -37,6 +39,7 @@ export const useOnboardingStore = create<OnboardingState>()(
       // Initial state
       selectedKelurahan: null,
       selectedUnit: null,
+      isTutorialComplete: false,
       isOnboardingComplete: false,
 
       // Actions
@@ -50,6 +53,9 @@ export const useOnboardingStore = create<OnboardingState>()(
       setUnit: (unit) => 
         set({ selectedUnit: unit }),
 
+      completeTutorial: () => 
+        set({ isTutorialComplete: true }),
+
       completeOnboarding: () => 
         set({ isOnboardingComplete: true }),
 
@@ -57,6 +63,7 @@ export const useOnboardingStore = create<OnboardingState>()(
         set({
           selectedKelurahan: null,
           selectedUnit: null,
+          isTutorialComplete: false,
           isOnboardingComplete: false,
         }),
     }),
